@@ -2,6 +2,8 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -25,19 +27,49 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     //声明Adapter作为listview的填充
     private NewsAdapter adapter;
     private List<Data> dataList;
+    private SwipeRefreshLayout swipeRefreshLayout ;
 
+//    private RecyclerView rcNews;
+//    //声明Adapter作为listview的填充
+//    private Adapter adapter;
+//    private List<Data> dataList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        swipeRefreshLayout = findViewById(R.id.swipe);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.notifyDataSetChanged();
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                }, 1000);
+            }
+        });
+
+
         lvNews = (ListView)findViewById(R.id.lvNews);
         dataList = new ArrayList<Data>();
         adapter = new NewsAdapter(this, dataList);
         lvNews.setAdapter(adapter);
         lvNews.setOnItemClickListener(this);
         sendRequestWithOKHttp();
+
+
+
+//        RecyclerView recyclerView =  findViewById(R.id.rcNews);
+//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+//        recyclerView.setLayoutManager(linearLayoutManager);
+//        Adapter adapter = new Adapter(dataList);
+//        recyclerView.setAdapter(adapter);
     }
+
 
     private void sendRequestWithOKHttp(){
         new Thread(new Runnable() {
