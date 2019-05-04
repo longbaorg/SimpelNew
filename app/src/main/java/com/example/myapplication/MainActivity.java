@@ -29,10 +29,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private List<Data> dataList;
     private SwipeRefreshLayout swipeRefreshLayout ;
 
-//    private RecyclerView rcNews;
-//    //声明Adapter作为listview的填充
-//    private Adapter adapter;
-//    private List<Data> dataList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,13 +57,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         lvNews.setOnItemClickListener(this);
         sendRequestWithOKHttp();
 
-
-
-//        RecyclerView recyclerView =  findViewById(R.id.rcNews);
-//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-//        recyclerView.setLayoutManager(linearLayoutManager);
-//        Adapter adapter = new Adapter(dataList);
-//        recyclerView.setAdapter(adapter);
     }
 
 
