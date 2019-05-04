@@ -21,6 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+/**
+ * Created by longbao on 2019/5/3.
+ */
+
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
     private ListView lvNews;

@@ -1,7 +1,7 @@
 package com.example.myapplication.gson;
 
 /**
- * Created by 浩比 on 2018/12/3.
+ * Created by longbao on 2019/5/3.
  */
 
 public class News {
